@@ -32,8 +32,7 @@
 
 		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6285814862369','*[ADMIN - Tembusan Pesan]*\n$text',5)");
 		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281298944287','*[ADMIN - Tembusan Pesan]*\n$text',5)");
-		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281281695616','*[ADMIN - Tembusan Pesan]*\n$text',5)");
-		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6282277978704','*[ADMIN - Tembusan Pesan]*\n$text',5)");
+		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281317339353','*[ADMIN - Tembusan Pesan]*\n$text',5)");
 
 		if ($res[0] > 0) {
 			for ($i=0; $i < $res[0]; $i++) { 

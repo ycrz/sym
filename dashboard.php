@@ -21,7 +21,7 @@
     </div>
 </nav>
 <?php 
-	$form = ['fm-x1'];
+	$form = ['fm-x2'];
 	for ($i=0; $i < count($form); $i++) { 
 		$res = queryBack("SELECT * FROM form_attendee WHERE fm='$form[$i]' order by name");
 ?>
@@ -42,18 +42,11 @@
 
 					<?php 
 						for ($j=0; $j < $res[0]; $j++) { 
-							$fixClassSYM = '';
+							$fixClassSYM = $res[1][$j]['sym_class'];
 							if ($res[1][$j]['sym_class'] == 0) {
 								$fixClassSYM = 'Belum pernah mengikuti kelas SYM';
 							}else{
-								$fixClassSYM = 'SYM Angkatan '.$fixClassSYM;
-							}
-
-							$fixClassSYM = '';
-							if ($res[1][$j]['sym_class'] == 0) {
-								$fixClassSYM = 'Belum pernah mengikuti kelas SYM';
-							}else{
-								$fixClassSYM = 'SYM Angkatan '.$fixClassSYM;
+								$fixClassSYM = '<b>SYM Angkatan '.$fixClassSYM.'</b>';
 							}
 
 							$fixHOW = '';

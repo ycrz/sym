@@ -70,7 +70,7 @@
 	<div class="row h-100">
 		<div class="col-12 my-auto">
 			<div class="card mt-5 mb-5 pt-5 pb-5 p-3" style="background-color:rgba(255, 255, 255, 0.9);">
-				<b class="tp-fs-rs-20">Pentahiran</b>
+				<b class="tp-fs-rs-20">RetRet Pasukan SYM</b>
 				<hr>
 				<section id="welcome" class="tp-ta-ct">
 					<h3>Silahkan Masukan Nomor HP dan Tanggal Lahir Anda</h3>
@@ -130,7 +130,7 @@
 				<section id="register" class="tp-dsp-none">
 					<h1>Bagian A</h1>
 					<button class="btn btn-primary mb-2" onclick="back()">Kembali ke menu awal <i class="fa-duotone fa-rotate-left"></i></button>
-					<input type="text" value="fm-x1" class="tp-dsp-none" name="fm" id="fm">
+					<input type="text" value="fm-x2" class="tp-dsp-none" name="fm" id="fm">
 					<div class="mb-3">
 						<label for="tx_name" class="form-label tp-fs-bold">Nama Lengkap (*)</label>
 						<input required type="text" class="form-control" id="tx_name" name="tx_name" placeholder="misal : Andi Kusumo">
@@ -196,12 +196,6 @@
 					<div class="mb-3">
 						<label class="form-label tp-fs-bold">Kelas SYM yang Anda Ikuti (*)</label>
 						<div class="form-check">
-							<input class="form-check-input class_sym" value="0" type="radio" name="class_sym" id="rad0" checked>
-							<label class="form-check-label" for="rad0">
-								Saya belum pernah mengikuti kelas SYM
-							</label>
-						</div>
-						<div class="form-check">
 							<input class="form-check-input class_sym" value="1" type="radio" name="class_sym" id="rad1">
 							<label class="form-check-label" for="rad1">
 								SYM Angkatan 1
@@ -221,17 +215,11 @@
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="tx_number" class="form-label tp-fs-bold">Metode Ikut Serta (*)</label>
+						<label for="tx_number" class="form-label tp-fs-bold">Pernyataan Keikutsertaan (*)</label>
 						<div class="form-check">
 							<input class="form-check-input how_sym" value="0" type="radio" name="how_sym" id="rad-off" checked>
 							<label class="form-check-label" for="rad-off">
-								Saya bersedia mengikuti pentahiran secara offline (Jabodetabek)
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input how_sym" value="1" type="radio" name="how_sym" id="rad-on">
-							<label class="form-check-label" for="rad-on">
-								Saya bersedia mengikuti pentahiran secara online
+								Saya bersedia mengikuti ret-ret di Surabaya pada tanggal 7-9 Oktober 2022
 							</label>
 						</div>
 					</div>
@@ -242,66 +230,17 @@
 					<small>
 						<b>Catatan</b>
 						<ol>
-							<li>Yang ikut pentahiran online, mencari kolam renang sendiri untuk sama-sama kita lakukan lewat Zoom</li>
-							<li>H-1 akan ada penyembahan, pelepasan dan pemutusan semua kutuk, sakit penyakit dsb</li>
-							<li>Bagi peserta pada saat H-1 tidak ikut kelas penyembahan, pengarahan dan pemutusan, maka tidak dapat mengikuti pentahiran di hari H baik off-line maupun on-line</li>
-							<li>Pendaftaran lewat google form dengan mengisi data di link yang telah disediakan. Yang tidak bisa isi google form harap hubungi ibu Cyntia</li>
+							<li>Biaya adalah Rp. 600,000.-</li>
+							<li>Yang tidak bisa mengisi form diatas, harap hubungi ibu Cyntia</li>
 							<li>Yang dicetak dengan menggunakan (*) adalah wajib</li>
-							<li>Waktu dan tempat akan di beritahukan secepatnya</li>
-							<li>Alamat tempat tinggal tidak wajib diisi</li>
+							<li>Waktu 7-9 Oktober 2022 di Surabaya</li>
 						</ol>
 					</small>
 				</section>
 				<section id="form" class="tp-dsp-none">
 					<hr>
-					<h1>Bagian B</h1>
-					<h2><i>-Keterbukaan adalah awal dari pemulihan. Bukan soal benar atau salah tetapi respon!-</i></h2>
-					<h3 class="tp-n-p tp-n-m">Isilah berdasarkan keadaan anda dan dalam pohon keluarga anda</h3>
-					<small>setiap jawaban anda akan disimpan secara otomatis</small>
-					<div class="mb-3"></div>
-					<?php 
-						$res = queryBack('SELECT * FROM sin_category');
-						for ($i=0; $i < $res[0]; $i++) { 
-					?>
-						<div class="row">
-							<div class="col-12">
-								<h5><?php echo ucwords(strtolower($res[1][$i]['name'])) ?></h5>
-							</div>
-							<?php 
-								$sid = $res[1][$i]['id'];
-								$res_c = queryBack("SELECT * FROM sin_detail WHERE sid='$sid'");
-								for ($j=0; $j < $res_c[0]; $j++) { 
-							?>
-								<div class="form-check col-6 col-md-4">
-								  	<input onchange="sid(this)" class="form-check-input tp-m-rg-5 fxc_<?php echo $res_c[1][$j]['id'] ?>" style="margin-left: -10px !important;" type="checkbox" value="<?php echo $res_c[1][$j]['id'] ?>" id="fxc_<?php echo $sid ?>_<?php echo $res_c[1][$j]['id'] ?>">
-								  	<label class="form-check-label" for="fxc_<?php echo $sid ?>_<?php echo $res_c[1][$j]['id'] ?>">
-								    	<?php echo ucwords(strtolower($res_c[1][$j]['name'])) ?>
-								  	</label>
-								</div>
-							<?php
-								}
-							?>
-							<div class="col-12">
-								<hr>
-							</div>
-						</div>
-					<?php
-						}
-					?>
-					<div class="row">
-						<div class="col-12">
-							<div class="form-group">
-								<h3>Lain-Lain</h3>
-								<label for="exampleInputEmail1">isikan jika ada ikatan/kutuk selain yang terdapat pada bagian b. lalu klik tombol simpan.</label>
-								<textarea class="form-control" rows="3" required name="text" id="saveother"></textarea>
-							</div>
-							<button onclick="saveOther()" class="btn btn-success tp-rnd-20 tp-m-tp-5">Simpan Lain-Lain</button>
-						</div>
-					</div>
-					<div class="tp-ta-rg" id="button_export">
-						<button class="btn btn-danger tp-rnd-20" onclick="exportPDF()"><i class="fa-duotone fa-file-pdf"></i> Export PDF</button>
-						<!-- <button class="btn btn-success" onclick="back()" style="width:150px">Selesai</button> -->
-					</div>
+					<h1>Bagian B - Tabungan-Ku</h1>
+					<h4>Terimakasih telah mendaftar! Fitur menabung akan segera kami sampaikan.</h4>
 				</section>
 			</div>
 		</div>
@@ -428,17 +367,6 @@
 				Swal.fire('Silahkan lengkapi formulir berikut','Bila anda mengalami kesulitan, silahkan tekan tombol whatsapp di kanan bawah.','success')
 			}
 		}
-	}
-
-	const sid = (e) => {
-		let val = e.value;
-		let checked = e.checked;
-		$('#tp-loader').fadeIn(500);
-		noneAjax({fid,val,checked},'core/update_sin.php');
-	}
-
-	const exportPDF = () => {
-		goToPage('exporter/exporter.php?p='+enc);
 	}
 
 	const logincont = () =>{
