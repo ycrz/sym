@@ -230,10 +230,10 @@
 					<small>
 						<b>Catatan</b>
 						<ol>
-							<li>Biaya adalah Rp. 600,000.-</li>
+							<li>Biaya adalah Rp. 600,000.- [hanya biaya hotel 3 hari 2 malam, belum termasuk transport pribadi]</li>
 							<li>Yang tidak bisa mengisi form diatas, harap hubungi ibu Cyntia</li>
 							<li>Yang dicetak dengan menggunakan (*) adalah wajib</li>
-							<li>Waktu 7-9 Oktober 2022 di Surabaya</li>
+							<li>Waktu 7-9 Oktober 2022 di Blessing Hill Trawas</li>
 						</ol>
 					</small>
 				</section>
