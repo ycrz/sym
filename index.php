@@ -196,6 +196,12 @@
 					<div class="mb-3">
 						<label class="form-label tp-fs-bold">Kelas SYM yang Anda Ikuti (*)</label>
 						<div class="form-check">
+							<input class="form-check-input class_sym" value="0" type="radio" name="class_sym" id="rad0">
+							<label class="form-check-label" for="rad1">
+								Belum pernah ikut Kelas SYM
+							</label>
+						</div>
+						<div class="form-check">
 							<input class="form-check-input class_sym" value="1" type="radio" name="class_sym" id="rad1">
 							<label class="form-check-label" for="rad1">
 								SYM Angkatan 1
@@ -230,7 +236,8 @@
 					<small>
 						<b>Catatan</b>
 						<ol>
-							<li>Biaya adalah Rp. 600,000.- [hanya biaya hotel 3 hari 2 malam, belum termasuk transport pribadi]</li>
+							<li>Peserta adalah yang berumur 15 tahun ke-atas</li>
+							<li>Biaya adalah Rp. 600,000.- per orang [hanya biaya hotel 3 hari 2 malam, belum termasuk transport pribadi]</li>
 							<li>Yang tidak bisa mengisi form diatas, harap hubungi ibu Cyntia</li>
 							<li>Yang dicetak dengan menggunakan (*) adalah wajib</li>
 							<li>Waktu 7-9 Oktober 2022 di Blessing Hill Trawas</li>
