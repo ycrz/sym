@@ -83,8 +83,7 @@
 
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6285814862369','$mssAdmin',5)");
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281298944287','$mssAdmin',5)");
-			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281281695616','$mssAdmin',5)");
-			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6282277978704','$mssAdmin',5)");
+			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281317339353','$mssAdmin',5)");
 
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$fix_num','Proses pendaftaran Anda sudah berhasil. Mohon menunggu informasi selanjutnya dari pihak kami.\n\nTerima Kasih,\nTuhan Yesus memberkati.\n_Singa Yehuda Mengaum_',5)");
 		}
