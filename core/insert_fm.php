@@ -79,7 +79,7 @@
 
 			$fix_num = sanity($phone);
 
-			$mssAdmin = "*[KHUSUS ADMIN]*\nTelah diterima pendaftaran\nNama: $name\nHp: $phone\nWA: wa.me/$fix_num\nKota: $city \nAlamat Lengkap: $address\nTanggal Lahir: $date_birth/$month_birth/$year_birth\n\nMengikuti Kelas SYM: $sym_class\nCara ikut pentahiran: $fixHOW";
+			$mssAdmin = "*[KHUSUS ADMIN]*\nTelah diterima pendaftaran\nNama: $name\nHp: $phone\nWA: wa.me/$fix_num\nKota: $city \nAlamat Lengkap: $address\nTanggal Lahir: $date_birth/$month_birth/$year_birth\n\nMengikuti Kelas SYM: $sym_class\nCara ikut ret-ret: $fixHOW";
 
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6285814862369','$mssAdmin',5)");
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281298944287','$mssAdmin',5)");
