@@ -51,9 +51,9 @@
 
 							$fixHOW = '';
 							if ($res[1][$j]['method'] == 0) {
-								$fixHOW = 'Offline';
+								$fixHOW = 'Sudah Bisa';
 							}else{
-								$fixHOW = 'Online';
+								$fixHOW = 'Belum Bisa';
 							}
 					?>
 					<div class="col-12 card tp-bt-cs-blue">
@@ -70,7 +70,7 @@
 								DOB : <?php echo $res[1][$j]['date_birth'] ?>/<?php echo $res[1][$j]['month_birth'] ?>/<?php echo $res[1][$j]['year_birth'] ?><br>
 								<hr class="tp-hr">
 								Kelas SYM yang diikuti : <?php echo $fixClassSYM ?> <br>
-								Metode : <?php echo $fixHOW ?>
+								Bahasa Roh : <?php echo $fixHOW ?>
 								<?php if ($form[$i] == 'fm-x1'): ?>
 									<div>
 										<button class="btn btn-danger tp-rnd-20" onclick="goToPage('exporter/exporter.php?p=<?php echo encrypt_decrypt_ori('encrypt',$res[1][$j]['id']) ?>')"><i class="fa-duotone fa-file-pdf"></i> Export PDF</button>

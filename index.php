@@ -221,11 +221,17 @@
 						</div>
 					</div>
 					<div class="mb-3">
-						<label for="tx_number" class="form-label tp-fs-bold">Pernyataan Keikutsertaan (*)</label>
+						<label for="tx_number" class="form-label tp-fs-bold">Bahasa Roh (*)</label>
 						<div class="form-check">
 							<input class="form-check-input how_sym" value="0" type="radio" name="how_sym" id="rad-off" checked>
 							<label class="form-check-label" for="rad-off">
-								Saya bersedia mengikuti ret-ret di Surabaya pada tanggal 7-9 Oktober 2022
+								Sudah bisa berbahasa Roh
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input how_sym" value="1" type="radio" name="how_sym" id="rad-on" checked>
+							<label class="form-check-label" for="rad-on">
+								Belum bisa berbahasa Roh
 							</label>
 						</div>
 					</div>
@@ -236,6 +242,7 @@
 					<small>
 						<b>Catatan</b>
 						<ol>
+							<li>Dengan mengisi formulir diatas, saya menyatakan bisa mengikuti acara secara offline</li>
 							<li>Peserta adalah yang berumur 15 tahun ke-atas</li>
 							<li>Biaya adalah Rp. 600,000.- per orang [hanya biaya hotel 3 hari 2 malam, belum termasuk transport pribadi]</li>
 							<li>Yang tidak bisa mengisi form diatas, harap hubungi ibu Cyntia</li>
