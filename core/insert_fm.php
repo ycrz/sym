@@ -81,9 +81,11 @@
 
 			$mssAdmin = "*[KHUSUS ADMIN]*\nTelah diterima pendaftaran\nNama: $name\nHp: $phone\nWA: wa.me/$fix_num\nKota: $city \nAlamat Lengkap: $address\nTanggal Lahir: $date_birth/$month_birth/$year_birth\n\nMengikuti Kelas SYM: $sym_class\nBahasa Roh: $fixHOW";
 
-			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6285814862369','$mssAdmin',5)");
-			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281298944287','$mssAdmin',5)");
-			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('6281317339353','$mssAdmin',5)");
+			$res = queryBack("SELECT phonenumber FROM admin_contact WHERE status='1'");
+			for ($i=0; $i < $res[0]; $i++) { 
+				$phA = sanity($res[1][$i]['phonenumber']);
+				queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','*[ADMIN - Tembusan Pesan]*\n$text',5)");
+			}
 
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$fix_num','Proses pendaftaran Anda sudah berhasil. Mohon menunggu informasi selanjutnya dari pihak kami.\n\nTerima Kasih,\nTuhan Yesus memberkati.\n_Singa Yehuda Mengaum_',5)");
 
