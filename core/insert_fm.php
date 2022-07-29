@@ -84,7 +84,7 @@
 			$res = queryBack("SELECT phonenumber FROM admin_contact WHERE status='1'");
 			for ($i=0; $i < $res[0]; $i++) { 
 				$phA = sanity($res[1][$i]['phonenumber']);
-				queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','*[ADMIN - Tembusan Pesan]*\n$text',5)");
+				queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','$mssAdmin',5)");
 			}
 
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$fix_num','Proses pendaftaran Anda sudah berhasil. Mohon menunggu informasi selanjutnya dari pihak kami.\n\nTerima Kasih,\nTuhan Yesus memberkati.\n_Singa Yehuda Mengaum_',5)");
