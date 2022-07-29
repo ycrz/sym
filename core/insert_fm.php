@@ -48,13 +48,14 @@
 		$month_birth = mysqli_real_escape_string($conn,$_POST['month']);
 		$year_birth = mysqli_real_escape_string($conn,$_POST['year']);
 		$sym_class = mysqli_real_escape_string($conn,$_POST['class_sym']);
+		$gender = mysqli_real_escape_string($conn,$_POST['gender']);
 		$method = mysqli_real_escape_string($conn,$_POST['how_sym']);
 
 		$exist = queryBack("SELECT * FROM form_attendee WHERE phone='$phone' AND date_birth='$date_birth' AND month_birth='$month_birth' AND year_birth='$year_birth' AND fm='$fm'")[0];
 
 		if ($exist == 0) {
-			$fid = queryInsert("INSERT INTO form_attendee (fm,name,phone,city,address,date_birth,month_birth,year_birth,sym_class,method) VALUES (
-								'$fm','$name','$phone','$city','$address','$date_birth','$month_birth','$year_birth','$sym_class','$method')");
+			$fid = queryInsert("INSERT INTO form_attendee (fm,name,phone,city,address,date_birth,month_birth,year_birth,sym_class,method,gender) VALUES (
+								'$fm','$name','$phone','$city','$address','$date_birth','$month_birth','$year_birth','$sym_class','$method','$gender')");
 
 			$fixClassSYM = '';
 			if ($sym_class == 0) {
@@ -77,9 +78,16 @@
 				$fixHOW = 'Belum Bisa';
 			}
 
+			$Fgender = '';
+			if ($gender == 1) {
+				$Fgender = 'Pria';
+			}else if ($gender == 2) {
+				$Fgender = 'Wanita';
+			}
+
 			$fix_num = sanity($phone);
 
-			$mssAdmin = "*[KHUSUS ADMIN]*\nTelah diterima pendaftaran\nNama: $name\nHp: $phone\nWA: wa.me/$fix_num\nKota: $city \nAlamat Lengkap: $address\nTanggal Lahir: $date_birth/$month_birth/$year_birth\n\nMengikuti Kelas SYM: $sym_class\nBahasa Roh: $fixHOW";
+			$mssAdmin = "*[KHUSUS ADMIN]*\nTelah diterima pendaftaran\nNama: $name\nHp: $phone\nWA: wa.me/$fix_num\nKota: $city \nAlamat Lengkap: $address\nTanggal Lahir: $date_birth/$month_birth/$year_birth\n\nMengikuti Kelas SYM: $sym_class\nBahasa Roh: $fixHOW\nGender: $Fgender";
 
 			$res = queryBack("SELECT phonenumber FROM admin_contact WHERE status='1'");
 			for ($i=0; $i < $res[0]; $i++) { 

@@ -136,6 +136,21 @@
 						<input required type="text" class="form-control" id="tx_name" name="tx_name" placeholder="misal : Andi Kusumo">
 					</div>
 					<div class="mb-3">
+						<label for="tx_number" class="form-label tp-fs-bold">Gender (*)</label>
+						<div class="form-check">
+							<input class="form-check-input gender" value="1" type="radio" name="gender" id="rad-off" checked>
+							<label class="form-check-label" for="rad-off">
+								Pria
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input gender" value="2" type="radio" name="gender" id="rad-on">
+							<label class="form-check-label" for="rad-on">
+								Wanita
+							</label>
+						</div>
+					</div>
+					<div class="mb-3">
 						<label for="tx_number" class="form-label tp-fs-bold">Nomor HP (*)</label>
 						<input required type="number" class="form-control" id="tx_number" name="tx_number" placeholder="misal : 085812345678">
 						<small><b>1 nomor hp hanya bisa untuk mendaftarkan 1 orang.</b></small>
@@ -285,6 +300,7 @@
 		$('#year').prop('disabled', status);
 		$('.class_sym').prop('disabled', status);
 		$('.how_sym').prop('disabled', status);
+		$('.gender').prop('disabled', status);
 	}
 	const cont = ()=>{
 		let tx_name = $('#tx_name').val().trim();
@@ -296,6 +312,7 @@
 		let year = $('#year').val();
 		let class_sym = $('input[name="class_sym"]:checked').val();
 		let how_sym = $('input[name="how_sym"]:checked').val();
+		let gender = $('input[name="gender"]:checked').val();
 		let fm = $('#fm').val();
 
 		let err = 0;
@@ -320,7 +337,7 @@
 				cancelButtonText: `Batalkan`,
 			}).then((result) => {
 				if (result.isConfirmed) {
-					returnAjax({tx_name,tx_number,tx_city,tx_address,date,month,year,class_sym,how_sym,fm},'core/insert_fm.php');
+					returnAjax({tx_name,tx_number,tx_city,tx_address,date,month,year,class_sym,how_sym,fm,gender},'core/insert_fm.php');
 				}
 			})
 		}
@@ -355,6 +372,7 @@
 
 				$("input[name=class_sym][value='"+json.tmp[1][0]['sym_class']+"']").prop("checked", true);
 				$("input[name=how_sym][value='"+json.tmp[1][0]['method']+"']").prop("checked", true);
+				$("input[name=gender][value='"+json.tmp[1][0]['gender']+"']").prop("checked", true);
 
 				checked(true);
 				register();
