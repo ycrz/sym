@@ -103,7 +103,7 @@
 										</tr>
 										
 										<?php 
-											$resStat = queryBack("SELECT city,count(*) AS summary FROM form_attendee WHERE fm='".$form[$i]."' GROUP BY city");
+											$resStat = queryBack("SELECT city,count(*) AS summary FROM form_attendee WHERE fm='".$form[$i]."' GROUP BY city ORDER BY city");
 											for ($j=0; $j < $resStat[0]; $j++) { 
 										?>
 												<tr>
