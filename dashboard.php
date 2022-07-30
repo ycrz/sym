@@ -48,10 +48,10 @@
 										<tr>
 											<td class="tp-bc-white tp-fc-black" colspan="3"><span class="tp-fs-bold tp-fs-italic">Statistik</span></td>
 										</tr>
-										<tr>
-											<th>Total Pendaftar</th>
-											<td>23</td>
-											<td>Peserta</td>
+										<tr class="tp-fs-rs-10">
+											<th class="tp-p-tb-0">Total Pendaftar</th>
+											<td class="tp-p-tb-0">23</td>
+											<td class="tp-p-tb-0">Peserta</td>
 										</tr>
 										<tr>
 											<td class="tp-bc-white tp-fc-black" colspan="3"><span class="tp-fs-bold tp-fs-italic">Berdasarkan Gender</span></td>
@@ -60,10 +60,10 @@
 											$resStat = queryBack("SELECT mg.name,count(*) as summary FROM form_attendee fa JOIN mst_gender mg on mg.id=fa.gender WHERE fm='".$form[$i]."' GROUP BY mg.name");
 											for ($j=0; $j < $resStat[0]; $j++) { 
 										?>
-												<tr>
-													<th><?php echo $resStat[1][$j]['name'] ?></th>
-													<td><?php echo $resStat[1][$j]['summary'] ?></td>
-													<td>Peserta</td>
+												<tr class="tp-fs-rs-10">
+													<th class="tp-p-tb-0"><?php echo $resStat[1][$j]['name'] ?></th>
+													<td class="tp-p-tb-0"><?php echo $resStat[1][$j]['summary'] ?></td>
+													<td class="tp-p-tb-0">Peserta</td>
 												</tr>
 										<?php
 											}
@@ -75,10 +75,10 @@
 											$resStat = queryBack("SELECT ms.name,count(*) as summary FROM form_attendee fa JOIN mst_sym ms on ms.id=fa.sym_class WHERE fm='".$form[$i]."' GROUP BY ms.name");
 											for ($j=0; $j < $resStat[0]; $j++) { 
 										?>
-												<tr>
-													<th><?php echo $resStat[1][$j]['name'] ?></th>
-													<td><?php echo $resStat[1][$j]['summary'] ?></td>
-													<td>Peserta</td>
+												<tr class="tp-fs-rs-10">
+													<th class="tp-p-tb-0"><?php echo $resStat[1][$j]['name'] ?></th>
+													<td class="tp-p-tb-0"><?php echo $resStat[1][$j]['summary'] ?></td>
+													<td class="tp-p-tb-0">Peserta</td>
 												</tr>
 										<?php
 											}
@@ -90,10 +90,10 @@
 											$resStat = queryBack("SELECT mbr.name,count(*) as summary FROM form_attendee fa JOIN mst_bahasa_roh mbr on mbr.id=fa.method WHERE fm='".$form[$i]."' GROUP BY mbr.name");
 											for ($j=0; $j < $resStat[0]; $j++) { 
 										?>
-												<tr>
-													<th><?php echo $resStat[1][$j]['name'] ?></th>
-													<td><?php echo $resStat[1][$j]['summary'] ?></td>
-													<td>Peserta</td>
+												<tr class="tp-fs-rs-10">
+													<th class="tp-p-tb-0"><?php echo $resStat[1][$j]['name'] ?></th>
+													<td class="tp-p-tb-0"><?php echo $resStat[1][$j]['summary'] ?></td>
+													<td class="tp-p-tb-0">Peserta</td>
 												</tr>
 										<?php
 											}
@@ -106,10 +106,10 @@
 											$resStat = queryBack("SELECT city,count(*) AS summary FROM form_attendee WHERE fm='".$form[$i]."' GROUP BY city ORDER BY city");
 											for ($j=0; $j < $resStat[0]; $j++) { 
 										?>
-												<tr>
-													<th><?php echo $resStat[1][$j]['city'] ?></th>
-													<td><?php echo $resStat[1][$j]['summary'] ?></td>
-													<td>Peserta</td>
+												<tr class="tp-fs-rs-10">
+													<th class="tp-p-tb-0"><?php echo $resStat[1][$j]['city'] ?></th>
+													<td class="tp-p-tb-0"><?php echo $resStat[1][$j]['summary'] ?></td>
+													<td class="tp-p-tb-0">Peserta</td>
 												</tr>
 										<?php
 											}
@@ -136,14 +136,14 @@
 								#<?php echo ($j+1) ?>
 							</div>
 							<div class="col-11">
-								Nama Lengkap : <?php echo $res[1][$j]['name'] ?><br>
-								No HP : <?php echo $res[1][$j]['phone'] ?><br>
-								Whatsapp : <a href="https://wa.me/<?php echo whatsappSanity($res[1][$j]['phone']) ?>">klik disini</a><br>
-								Kota : <?php echo $res[1][$j]['city'] ?><br>
-								Alamat : <?php echo $res[1][$j]['address'] ?><br>
-								DOB : <?php echo $res[1][$j]['date_birth'] ?>/<?php echo $res[1][$j]['month_birth'] ?>/<?php echo $res[1][$j]['year_birth'] ?><br>
+								<b>Nama Lengkap</b> : <?php echo $res[1][$j]['name'] ?><br>
+								<b>No HP</b> : <?php echo $res[1][$j]['phone'] ?><br>
+								<b>Whatsapp</b> : <a href="https://wa.me/<?php echo whatsappSanity($res[1][$j]['phone']) ?>">klik disini</a><br>
+								<b>Kota</b> : <?php echo $res[1][$j]['city'] ?><br>
+								<b>Alamat</b> : <?php echo $res[1][$j]['address'] ?><br>
+								<b>DOB</b> : <?php echo $res[1][$j]['date_birth'] ?>/<?php echo $res[1][$j]['month_birth'] ?>/<?php echo $res[1][$j]['year_birth'] ?><br>
 								<hr class="tp-hr">
-								Kelas SYM yang diikuti : <?php echo $fixClassSYM ?> <br>
+								<b>Kelas SYM yang diikuti</b> : <?php echo $fixClassSYM ?> <br>
 								
 								<?php if ($form[$i] == 'fm-x1'): ?>
 									<div>
@@ -156,7 +156,7 @@
 											$fixHOW = 'Online';
 										}
 									?>
-									Cara Ikut Pentahiran : <?php echo $fixHOW ?>
+									<b>Cara Ikut Pentahiran</b> : <?php echo $fixHOW ?>
 								<?php endif ?>
 
 								<?php if ($form[$i] == 'fm-x2'): ?>
@@ -167,7 +167,7 @@
 											$fixHOW = 'Belum Bisa';
 										}
 									?>
-									Bahasa Roh : <?php echo $fixHOW ?> <br>
+									<b>Bahasa Roh</b> : <?php echo $fixHOW ?> <br>
 
 									<?php 
 										if ($res[1][$j]['gender'] == 1) {
@@ -178,7 +178,7 @@
 											$gender = 'Tidak disebutkan';
 										}
 									?>
-									Gender : <?php echo $gender ?>
+									<b>Gender</b> : <?php echo $gender ?>
 								<?php endif ?>
 							</div>
 						</div>
