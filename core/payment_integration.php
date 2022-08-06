@@ -200,10 +200,10 @@
 		$account_number = $response_JSON['data']['response']['account_number'];
         $_SESSION['tcpl_va'] = $account_number;
 
+		$phA = sanity($number);
 		queryPost("INSERT INTO whatsapp.billing_payment (billing_order_id,payment_id,va_number,payload,media,user_number) VALUES ('$billing_order_id','$payment_id','$account_number','$payment','$wallet','$phA')");
 
 		$mss = "[Informasi Pembayaran SYM]\n".'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda.'."\n*Nomor:".$_SESSION['tcpl_va']."*"."\nMaksimal Pembayaran berakhir dalam 24 Jam.\n\n_Nomor VA bukan nomor rekening, namun bisa transfer melalui menu virtual account_";
-		$phA = sanity($number);
 		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','$mss',5)");
 
 		echo json_encode(array('tmp' => 'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda. <br> <h1>'.$_SESSION['tcpl_va'].'</h1> <br> Pembayaran akan berakhir dalam 24 Jam.', "trx" => $trx, "flag" => 'true'));
