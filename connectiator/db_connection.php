@@ -22,6 +22,24 @@
 		while ($row = mysqli_fetch_assoc($res)) { $arr[] = $row; }
 		return [mysqli_num_rows($res),$arr];
 	}
+	function queryBackMulti($query){
+		$conn = OpenCon();
+		$arr = [];
+		$count = 0;
+		if (mysqli_multi_query($conn, $query)) {
+			do {
+				if ($result = mysqli_store_result($conn)) {
+					while ($row = mysqli_fetch_row($result)) {
+						$arr[] = $row;
+						$count++;
+					}
+					mysqli_free_result($result);
+				}
+				if (mysqli_more_results($conn)) {}
+			} while (mysqli_next_result($conn));
+		}
+		return [$count,$arr];
+	}
 
 	function queryPost($query){
 		$conn = OpenCon();

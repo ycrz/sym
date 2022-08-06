@@ -100,6 +100,6 @@
 			// masukin ke grup
 			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id,typeMessage) VALUES ('$fix_num','RetRet SYM-Participant',5,'3')");
 		}
-        echo json_encode(array('tmp'=>$exist,'flag'=>'insert_fm','fid'=>$fid,'enc'=>encrypt_decrypt_ori('encrypt', $fid)));
+        echo json_encode(array('tmp'=>$exist,'flag'=>'insert_fm','fid'=>$fid,'name'=>$name,'enc'=>encrypt_decrypt_ori('encrypt', $fid)));
     }
 ?>

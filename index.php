@@ -7,6 +7,12 @@
 	}
 ?>
 
+<link href="js/datatable/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="js/datatable/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="js/datatable/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+<link href="js/datatable/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<link href="js/datatable/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+
 <style type="text/css">
 	#background {
 		background-image: url("img/bc-t.jpeg");
@@ -269,13 +275,82 @@
 				<section id="form" class="tp-dsp-none">
 					<hr>
 					<h1>Bagian B - Tabungan-Ku</h1>
-					<h4>Terimakasih telah mendaftar! Fitur menabung akan segera kami sampaikan.</h4>
+					<small>Anda dapat melakukan pembayaran retreat secara berkala. Mulai dari <b>Rp. 200.000</b>perbulan dicicil 3x, atau melakukan pembayaran secara penuh sebesar <b>Rp. 600.000</b></small>
+					<form method="POST" action="core/payment_integration">
+						<input type="text" name="services" class="tp-dsp-none" value="21">
+						<input type="text" name="fid" class="tp-dsp-none" id="fid">
+						<input type="text" name="name" class="tp-dsp-none" id="name">
+	                    <label class="sr-only" for="depo">Rupiah</label>
+	                    <div class="input-group mb-2">
+	                        <div class="input-group-prepend">
+	                            <div class="input-group-text">Rp.</div>
+	                        </div>
+	                        <input min="200000" value="200000" type="input" class="form-control ret_strict" name="amount" placeholder="minimal 200.000" required>
+	                    </div>
+	                    <div class="custom-control custom-radio">
+	                        <input type="radio" class="custom-control-input" id="customControlValidation2" value="BNI" name="radio-stacked" required checked>
+	                        <label class="custom-control-label" for="customControlValidation2">VIRTUAL ACCOUNT : BNI</label>
+	                    </div>
+	                    <div class="custom-control custom-radio">
+	                        <input type="radio" class="custom-control-input" id="customControlValidation3" value="BRI" name="radio-stacked" required>
+	                        <label class="custom-control-label" for="customControlValidation3">VIRTUAL ACCOUNT : BRI</label>
+	                    </div>
+	                    <div class="custom-control custom-radio">
+	                        <input type="radio" class="custom-control-input" id="customControlValidation4" value="MANDIRI" name="radio-stacked" required>
+	                        <label class="custom-control-label" for="customControlValidation4">VIRTUAL ACCOUNT : MANDIRI</label>
+	                    </div>
+	                    <div class="custom-control custom-radio">
+	                        <input type="radio" class="custom-control-input" id="customControlValidation5" value="PERMATA" name="radio-stacked" required>
+	                        <label class="custom-control-label" for="customControlValidation5">VIRTUAL ACCOUNT : PERMATA</label>
+	                    </div>
+	                    <?php 
+	                        $_SESSION['tcpl'] = 'belum terpakai';
+	                        $_SESSION['tcpl_trx'] = '';
+	                        $_SESSION['tcpl_name'] = '';
+	                        $_SESSION['tcpl_bank'] = '';
+	                        $_SESSION['tcpl_va'] = '';
+	                    ?>
+	                    <button type="submit" onclick="loader()" name="tcpl" class="btn btn-primary"><i class="fa-duotone fa-money-bill-1-wave"></i> Bayar</button>
+	                </form>
+	                <hr>
+					<h3>Data Transaksi Anda</h3>
+					<table id="tbl" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:1%">No</th>
+                                <th>Nomor Transaksi</th>
+                                <th>Nomor Virtual</th>
+                                <th>Bank</th>
+                                <th>Total</th>
+                                <th>Status Pembayaran</th>
+                            </tr>
+                        </thead>
+                    </table>
 				</section>
 			</div>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
+	let max = 600000;
+	$('.ret_strict').keyup(function() {
+	    let value = $(this).val();
+	    if(!$.isNumeric(value)){
+	        let res = value.substring(0, value.length-1);
+	        $(this).val(200000);
+	    }else{
+	        let substring = value.substring(0,1);
+	        if (substring==0) {
+	            $(this).val(value.substring(1, value.length));
+	        }
+	        if ($(this).val() < 200000) {
+	            $(this).val(200000);
+	        }else if ($(this).val() > max) {
+	            $(this).val(max);
+	        }
+	    }
+	});
+
 	let fid = 0;
 	let enc = 0;
 	const register = ()=>{
@@ -352,6 +427,8 @@
 				$('#form').removeClass('tp-dsp-none');
 				Swal.fire('Silahkan lanjutkan pengisian','Anda dapat mengisi tahapan berikutnya','success')
 				fid = json.fid;
+				$('#fid').val(json.fid);
+				$('#name').val(json.name);
 				checked(true);
 				enc = json.enc;
 			}else{
@@ -362,6 +439,8 @@
 		}else if (json.flag == 'login'){
 			if(json.tmp[0] == 1){
 				fid = json.tmp[1][0]['id'];
+				$('#fid').val(json.tmp[1][0]['id']);
+				$('#name').val(json.tmp[1][0]['name']);
 				$('#tx_name').val(json.tmp[1][0]['name'])
 				$('#tx_number').val(json.tmp[1][0]['phone'])
 				$('#tx_city').val(json.tmp[1][0]['city'])
@@ -389,6 +468,10 @@
 				Swal.fire('Login Sukses','Anda dapat melanjutkan isian formulir bagian B','success')
 
 				enc = json.enc;
+        		let table = $('#tbl').DataTable();
+        		table.ajax.reload( function ( json ) {
+	                table.page(1).draw( false );
+	            });
 			}else{
 				checked(false);
 				$('#tx_number').val($('#lg-number').val());
@@ -422,4 +505,50 @@
 		let text = $('#saveother').val();
 		simpleAjax({text,fid},'core/other_fm.php');
 	}
+</script>
+
+
+
+
+<script src="js/datatable/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="js/datatable/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="js/datatable/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="js/datatable/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="js/datatable/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="js/datatable/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="js/datatable/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="js/datatable/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="js/datatable/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="js/datatable/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="js/datatable/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="js/datatable/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+<script type="text/javascript">
+	$('#tbl').DataTable({
+        ajax: {
+            url: 'core/getTRX',
+            data: {fid:174},
+            dataSrc: ""
+        },
+        columns: [
+        	{
+                data: 'no'
+            },
+            {
+                data: 'trx'
+            },
+            {
+                data: 'va'
+            },
+            {
+                data: 'bank'
+            },
+            {
+                data: 'total'
+            },
+            {
+                data: 'status'
+            },
+        ]
+    });
 </script>
