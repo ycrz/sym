@@ -185,7 +185,7 @@
     	$number = queryBack("SELECT phone FROM form_attendee WHERE id='$fid'")[1][0]['phone'];
     	$name = $_POST['name'];
 
-        $res = queryBackMulti("CALL whatsapp.gen_invoice(21,@cek); SELECT @cek;");
+        $res = queryBackMulti("CALL whatsapp.gen_invoice(20,@cek); SELECT @cek;");
         $trx = $res[1][0][0];
         $_SESSION['tcpl_trx'] = $trx;
 
@@ -200,7 +200,7 @@
 		$account_number = $response_JSON['data']['response']['account_number'];
         $_SESSION['tcpl_va'] = $account_number;
 
-		queryPost("INSERT INTO whatsapp.billing_payment (billing_order_id,payment_id,va_number,payload,media) VALUES ('$billing_order_id','$payment_id','$account_number','$payment','$wallet')");
+		queryPost("INSERT INTO whatsapp.billing_payment (billing_order_id,payment_id,va_number,payload,media,user_number) VALUES ('$billing_order_id','$payment_id','$account_number','$payment','$wallet','$phA')");
 
 		$mss = "[Informasi Pembayaran SYM]\n".'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda.'."\n*Nomor:".$_SESSION['tcpl_va']."*"."\nMaksimal Pembayaran berakhir dalam 24 Jam.\n\n_Nomor VA bukan nomor rekening, namun bisa transfer melalui menu virtual account_";
 		$phA = sanity($number);
