@@ -469,9 +469,7 @@
 
 				enc = json.enc;
         		let table = $('#tbl').DataTable();
-        		table.ajax.reload( function ( json ) {
-	                table.page(1).draw( false );
-	            });
+        		table.ajax.url("core/getTRX?nid="+fid).load();
 			}else{
 				checked(false);
 				$('#tx_number').val($('#lg-number').val());

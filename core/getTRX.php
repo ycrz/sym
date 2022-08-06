@@ -1,10 +1,13 @@
 <?php 
-	if (isset($_GET['fid'])){
+	if (isset($_GET['fid']) || isset($_GET['nid'])){
         $res=proceed($conn);
     }
 
     function proceed($conn){
         $fid=$_GET['fid'];
+        if (isset($_GET['nid'])) {
+            $fid = $_GET['nid'];
+        }
         $res = queryBack("SELECT bo.trx_number,bp.va_number,bp.media,bo.deposit,bo.status FROM whatsapp.billing_order bo JOIN whatsapp.billing_payment bp ON bp.billing_order_id=bo.id WHERE bo.trx_number like '010002%' AND bo.uid='$fid'");
         $arr = [];
         for ($i=0; $i < $res[0]; $i++) {
