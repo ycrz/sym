@@ -527,7 +527,7 @@
 	$('#tbl').DataTable({
         ajax: {
             url: 'core/getTRX',
-            data: {fid:174},
+            data: {fid},
             dataSrc: ""
         },
         columns: [
