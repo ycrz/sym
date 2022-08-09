@@ -80,7 +80,7 @@
 		}else{
 	?>	
 			// console.log('terpakai');
-			$('#mss').html('Berikut merupakan kode virtual account <?php echo $_SESSION['tcpl_bank'] ?> anda. <br> <h1><?php echo $_SESSION['tcpl_va'] ?></h1> <br> Pembayaran akan berakhir dalam 24 Jam.');
+			$('#mss').html('Berikut merupakan kode virtual account <?php echo $_SESSION['tcpl_bank'] ?> anda. <br> <h1><?php echo $_SESSION['tcpl_va'] ?></h1> <br> <b>Mohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.</b>');
         	$('#mss').css('marginTop','50vh');
 			startChecking('<?php echo $_SESSION['tcpl_trx'] ?>');
 	<?php
@@ -203,10 +203,10 @@
 		$phA = sanity($number);
 		queryPost("INSERT INTO whatsapp.billing_payment (billing_order_id,payment_id,va_number,payload,media,user_number) VALUES ('$billing_order_id','$payment_id','$account_number','$payment','$wallet','$phA')");
 
-		$mss = "[Informasi Pembayaran SYM]\n".'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda.'."\n*Nomor:".$_SESSION['tcpl_va']."*"."\nMaksimal Pembayaran berakhir dalam 24 Jam.\n\n_Nomor VA bukan nomor rekening, namun bisa transfer melalui menu virtual account_";
+		$mss = "[Informasi Pembayaran SYM]\n".'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda.'."\n*Nomor:".$_SESSION['tcpl_va']."*"."\nMohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.\n\n_Nomor VA bukan nomor rekening, namun bisa ditransfer, melalui menu virtual account_";
 		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','$mss',5)");
 
-		echo json_encode(array('tmp' => 'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda. <br> <h1>'.$_SESSION['tcpl_va'].'</h1> <br> Pembayaran akan berakhir dalam 24 Jam.', "trx" => $trx, "flag" => 'true'));
+		echo json_encode(array('tmp' => 'Berikut merupakan kode virtual account '.$_SESSION['tcpl_bank'].' anda. <br> <h1>'.$_SESSION['tcpl_va'].'</h1> <br> <b>Mohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.</b>', "trx" => $trx, "flag" => 'true'));
     }
 
     function validateNumberOnly($string){
