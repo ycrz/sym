@@ -276,6 +276,7 @@
 					<hr>
 					<h1>Bagian B - Tabungan-Ku</h1>
 					<small>Anda dapat melakukan pembayaran retreat secara berkala. Mulai dari <b>Rp. 200.000</b>perbulan dicicil 3x, atau melakukan pembayaran secara penuh sebesar <b>Rp. 600.000</b></small>
+					<h3>Metode Virtual Account (cek otomatis)</h3>
 					<form method="POST" action="core/payment_integration">
 						<input type="text" name="services" class="tp-dsp-none" value="21">
 						<input type="text" name="fid" class="tp-dsp-none" id="fid">
@@ -312,6 +313,25 @@
 	                    ?>
 	                    <button type="submit" onclick="loader()" name="tcpl" class="btn btn-primary"><i class="fa-duotone fa-money-bill-1-wave"></i> Bayar</button>
 	                </form>
+	                <h3 class="tp-m-tp-20">Anda juga dapat mentransferkan ke rekening BCA kami (transfer dan cek manual)</h3>
+	                <b>Cara Transfer ke-rekening BCA</b>
+					<ol>
+						<li>
+							Nomor Rekening 6801358311 a/n Purwani Astuti OR Tina
+						</li>
+						<li>
+							Untuk bayar <b>lunas</b> sejumlah 600,000 maka harus ditambah 1 rupiah menjadi <b>600,001</b>
+						</li>
+						<li>
+							Untuk bayar <b>cicilan</b> 3x sejumlah @200,000 maka harus ditambah 2 rupiah menjadi <b>200,002</b>
+						</li>
+						<li>
+							Berita transfer harus memuat <b>SBY - NAMA LENGKAP</b>
+						</li>
+						<li>
+							Konfirmasi ke nomor berikut <a href="wa.me/628170107088">08170107088 (Tina)</a>
+						</li>
+					</ol>
 	                <hr>
 					<h3>Data Transaksi Anda</h3>
 					<table id="tbl" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
