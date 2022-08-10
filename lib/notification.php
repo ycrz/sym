@@ -21,6 +21,10 @@
             echo "<script type='text/javascript'>
                 Swal.fire({ icon: 'success', title: 'Sukses!', text: 'Pesan berhasil dikirim' });
             </script>";
+        }else if ($_SESSION['alertsk'][0] == '1f') {
+            echo "<script type='text/javascript'>
+                Swal.fire({ icon: 'success', title: 'Sukses!', text: 'Pembayaran berhasil disimpan!' });
+            </script>";
         }
         $_SESSION['alertsk'][0] = 'netral';
     }

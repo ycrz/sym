@@ -21,6 +21,39 @@
 <div class="container tp-m-tp-30">
 	<div class="row">
 		<div class="col-12">
+            <h3>Pencatatan Lunas Bank Lain</h3>
+            <form action="core/lunasmanual.php" method="POST">
+                <div class="form-group">
+                    <label for="name_id">Nama</label>
+                    <select name="name_id" id="name_id" class="form-control">
+                        <?php 
+                            for ($j=0; $j < $res[0]; $j++) { 
+                        ?>
+                                <option value="<?php echo $res[1][$j]['id'] ?>"><?php echo $res[1][$j]['name'] ?></option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount_id">Rupiah</label>
+                    <input type="number" name="amount_id" id="amount_id" class="form-control" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="bank_id">Bank</label>
+                    <select name="bank_id" id="bank_id" class="form-control">
+                        <option value="BCA">BCA</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date_id">Tanggal Lunas</label>
+                    <input type="date" name="date_id" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                </div>
+                <div class="tp-m-tp-10"><button type="submit" class="btn btn-primary">Simpan</button></div>
+                <div><small>Dengan klik tombol diatas, data tersebut langsung dinyatakan lunas.</small></div>
+            </form>
+            <br>
+            <hr>
 			<h3>Data Transaksi</h3>
 			<table id="tbl" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                 <thead>
@@ -86,4 +119,8 @@
             },
         ]
     });
+
+    const saveManual = () => {
+
+    }
 </script>
