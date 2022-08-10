@@ -276,7 +276,31 @@
 					<hr>
 					<h1>Bagian B - Tabungan-Ku</h1>
 					<small>Anda dapat melakukan pembayaran retreat secara berkala. Mulai dari <b>Rp. 200.000</b>perbulan dicicil 3x, atau melakukan pembayaran secara penuh sebesar <b>Rp. 600.000</b></small>
-					<h3>Metode Virtual Account (cek otomatis)</h3>
+					<hr>
+					<h3>Metode QRIS (cek otomatis)</h3>
+					<b>Dapat dilakukan dengan BCA Mobile, BRI Mobile, Mandiri Mobile, BNI Mobile, OVO, GOPAY atau Shopee Pay dan masih banyak lagi.</b>
+					<form method="POST" action="core/payment_integration_qris">
+						<input type="text" name="services" class="tp-dsp-none" value="21">
+						<input type="text" name="fid" class="tp-dsp-none" id="fid">
+						<input type="text" name="name" class="tp-dsp-none" id="name">
+	                    <label class="sr-only" for="depo">Rupiah</label>
+	                    <div class="input-group mb-2">
+	                        <div class="input-group-prepend">
+	                            <div class="input-group-text">Rp.</div>
+	                        </div>
+	                        <input min="200000" value="200000" type="input" class="form-control ret_strict" name="amount" placeholder="minimal 200.000" required>
+	                    </div>
+	                    <input type="text" name="radio-stacked" value="QRIS" class="tp-dsp-none">
+	                    <?php 
+	                        $_SESSION['tcpl'] = 'belum terpakai';
+	                        $_SESSION['tcpl_trx'] = '';
+	                        $_SESSION['tcpl_name'] = '';
+	                        $_SESSION['tcpl_bank'] = '';
+	                        $_SESSION['tcpl_va'] = '';
+	                    ?>
+	                    <button type="submit" onclick="loader()" name="tcpl" class="btn btn-primary"><i class="fa-duotone fa-money-bill-1-wave"></i> Bayar</button>
+	                </form>
+					<h3 class="tp-m-tp-20">Metode Virtual Account (cek otomatis)</h3>
 					<form method="POST" action="core/payment_integration">
 						<input type="text" name="services" class="tp-dsp-none" value="21">
 						<input type="text" name="fid" class="tp-dsp-none" id="fid">
@@ -313,7 +337,7 @@
 	                    ?>
 	                    <button type="submit" onclick="loader()" name="tcpl" class="btn btn-primary"><i class="fa-duotone fa-money-bill-1-wave"></i> Bayar</button>
 	                </form>
-	                <h3 class="tp-m-tp-20">Anda juga dapat mentransferkan ke rekening BCA kami (transfer dan cek manual)</h3>
+	                <h3 class="tp-m-tp-20">BCA Manual (transfer dan cek manual)</h3>
 	                <b>Cara Transfer ke-rekening BCA</b>
 					<ol>
 						<li>
@@ -351,6 +375,8 @@
 		</div>
 	</div>
 </div>
+<script src="temp_js/qrcode.js"></script>
+
 <script type="text/javascript">
 	let max = 600000;
 	$('.ret_strict').keyup(function() {
@@ -542,7 +568,11 @@
 <script src="js/datatable/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
 
 <script type="text/javascript">
+	let qrisArr = [];
+	let qrisNUMArr = [];
+	let inter = 0;
 	$('#tbl').DataTable({
+		"bStateSave": true,
         ajax: {
             url: 'core/getTRX',
             data: {fid},
@@ -556,7 +586,18 @@
                 data: 'trx'
             },
             {
-                data: 'va'
+                data: '',
+                render: function(data, type, row) {
+                	let qris = `<div id='q_${row.no}' class="text-primary tp-csr-st-pointer" onclick="loadKode('${inter}')">Lihat QR Code</div>`
+                	let peer = (row.bank=='QRIS')?qris:row['va'];
+                	if (row['bank']=='QRIS') {
+                		qrisArr.push(`q_${row.no}`);
+                		qrisNUMArr.push(row['va']);
+                		inter++;
+                	}
+
+                    return data = `${peer}`
+                }
             },
             {
                 data: 'bank'
@@ -567,6 +608,14 @@
             {
                 data: 'status'
             },
-        ]
+        ],
+        "fnStateLoad": function (oSettings) {
+        	console.log('yes');
+            // return JSON.parse(localStorage.getItem('offersDataTables'));
+        }
     });
+	let loadKode = (index) => {
+		document.getElementById(`${qrisArr[index]}`).innerHTML = '';
+       	new QRCode(document.getElementById(`${qrisArr[index]}`),qrisNUMArr[index]);
+	}
 </script>
