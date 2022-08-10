@@ -65,6 +65,7 @@
                         <th>Bank</th>
                         <th>Total</th>
                         <th>Status Pembayaran</th>
+                        <th>Tanggal Payment</th>
                     </tr>
                 </thead>
             </table>
@@ -117,10 +118,9 @@
             {
                 data: 'status'
             },
+            {
+                data: 'timestamp'
+            },
         ]
     });
-
-    const saveManual = () => {
-
-    }
 </script>
