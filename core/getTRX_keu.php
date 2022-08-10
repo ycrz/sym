@@ -22,7 +22,11 @@
             $trx->no=($i+1);
             $trx->trx=ucwords($res[1][$i]['trx_number']);
             $trx->name=ucwords($res[1][$i]['name']);
-            $trx->va=ucwords($res[1][$i]['va_number']);
+            if ($res[1][$i]['media'] == 'QRIS') {
+                $trx->va='QRIS';
+            }else{
+                $trx->va=ucwords($res[1][$i]['va_number']);
+            }
             $trx->bank=ucwords($res[1][$i]['media']);
             $trx->total=ucwords($res[1][$i]['deposit']);
             $trx->timestamp=ucwords($res[1][$i]['timestamp']);
