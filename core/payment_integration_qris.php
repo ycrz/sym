@@ -25,6 +25,9 @@
 	<script src="../temp_js/qrcode.js"></script>
 </head>
 <style type="text/css">
+	#qrcode>img{
+		margin: 0 auto;
+	}
 	.loader {
 		border: 16px solid #f3f3f3;
 		border-radius: 50%;
@@ -67,11 +70,11 @@
 		        	let json = JSON.parse(get);
 		        	if (json.flag == 'true') {
 		        		$('#mss').html(json.tmp);
-			        	$('#mss').css('marginTop','50vh');
+			        	$('#mss').css('marginTop','22vh');
 			        	startChecking(json.trx);
 		        	}else{
 		        		$('#mss').html(json.tmp);
-			        	$('#mss').css('marginTop','50vh');
+			        	$('#mss').css('marginTop','22vh');
 		        	}
 		        },error: function(get){
 		        	alert('Gagal! cek koneksi anda');
@@ -82,11 +85,11 @@
 	?>	
 			// console.log('terpakai');
 
-			$('#mss').html('Berikut merupakan kode QRIS anda. <br> <div id="qrcode"></div> <br> <b>Mohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.</b>');
+			$('#mss').html('Berikut merupakan kode QRIS anda. <br> <div id="qrcode"></div> <br> Dapat dibayar menggunakan mobile banking BCA, BRI, MANDIRI, BNI dan bank lainnya atau bisa juga dengan OVO GOPAY ATAU SHOPEEPAY <br> <b>Mohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.</b>');
 			
 			new QRCode(document.getElementById("qrcode"), "<?php echo $_SESSION['tcpl_va'] ?>");
 
-        	$('#mss').css('marginTop','50vh');
+        	$('#mss').css('marginTop','22vh');
 			startChecking('<?php echo $_SESSION['tcpl_trx'] ?>');
 	<?php
 		}
@@ -212,7 +215,7 @@
 		$mss = "[Informasi Pembayaran SYM]\n'Anda memilih membayar menggunakan QRIS. Pembayaran akan berakhir dalam 24 jam.\n\n_Kode QR ditampilkan di website singayehudamengaum.my.id\nTerimakasih Tuhan Yesus memberkati!_";
 		queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','$mss',5)");
 
-		echo json_encode(array('tmp' => 'Berikut merupakan kode QRIS anda. <br> <div id="qrcode"></div> <br> <b>Mohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.</b> <script type="text/javascript">new QRCode(document.getElementById("qrcode"), "'.$account_number.'");</script>', "trx" => $trx, "flag" => 'true', "payload"=>"INSERT INTO whatsapp.billing_payment (billing_order_id,payment_id,va_number,payload,media,user_number) VALUES ('$billing_order_id','$payment_id','$account_number','$payment','$wallet','$phA')"));
+		echo json_encode(array('tmp' => 'Berikut merupakan kode QRIS anda. <br> <div id="qrcode"></div> <br> Dapat dibayar menggunakan mobile banking BCA, BRI, MANDIRI, BNI dan bank lainnya atau bisa juga dengan OVO GOPAY ATAU SHOPEEPAY <br> <b>Mohon segera melakukan pembayaran. Pembayaran akan berakhir dalam 24 jam.</b> <script type="text/javascript">new QRCode(document.getElementById("qrcode"), "'.$account_number.'");</script>', "trx" => $trx, "flag" => 'true'));
     }
 
     function validateNumberOnly($string){
