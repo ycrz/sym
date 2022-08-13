@@ -32,11 +32,11 @@
 	}
 
     function proceed($conn){
-        $res = queryBack("SELECT trx_number,payment_id FROM billing_order bo JOIN billing_payment bp ON bo.id = bp.billing_order_id WHERE substr(bo.trx_number,1,7) like '010002%' AND STATUS='N' AND now() > bo.timestamp+INTERVAL 1 day");
+        $res = queryBack("SELECT trx_number,payment_id FROM whatsapp.billing_order bo JOIN whatsapp.billing_payment bp ON bo.id = bp.billing_order_id WHERE substr(bo.trx_number,1,7) like '010002%' AND STATUS='N' AND now() > bo.timestamp+INTERVAL 1 day");
         for ($i=0; $i < $res[0]; $i++) { 
-        	durianCancelPayment($res[1][$i]['payment_id']);
         	$trx = $res[1][$i]['trx_number'];
-        	queryPost("UPDATE billing_order SET status = 'Z' WHERE trx_number = '$trx'");
+        	queryPost("UPDATE whatsapp.billing_order SET status = 'Z' WHERE trx_number = '$trx'");
+        	durianCancelPayment($res[1][$i]['payment_id']);
         }
     }
 ?>
