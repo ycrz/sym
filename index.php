@@ -490,8 +490,8 @@
 				$('#fid').val(json.tmp[1][0]['id']);
 				$('#name').val(json.tmp[1][0]['name']);
 
-				$('#fid_qris').val(json.fid);
-				$('#name_qris').val(json.name);
+				$('#fid_qris').val(json.tmp[1][0]['id']);
+				$('#name_qris').val(json.tmp[1][0]['name']);
 				
 				$('#tx_name').val(json.tmp[1][0]['name'])
 				$('#tx_number').val(json.tmp[1][0]['phone'])
