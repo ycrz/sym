@@ -281,8 +281,8 @@
 					<b>Dapat dilakukan dengan BCA Mobile, BRI Mobile, Mandiri Mobile, BNI Mobile, OVO, GOPAY atau Shopee Pay dan masih banyak lagi.</b>
 					<form method="POST" action="core/payment_integration_qris">
 						<input type="text" name="services" class="tp-dsp-none" value="21">
-						<input type="text" name="fid" class="tp-dsp-none" id="fid">
-						<input type="text" name="name" class="tp-dsp-none" id="name">
+						<input type="text" name="fid" class="tp-dsp-none" id="fid_qris">
+						<input type="text" name="name" class="tp-dsp-none" id="name_qris">
 	                    <label class="sr-only" for="depo">Rupiah</label>
 	                    <div class="input-group mb-2">
 	                        <div class="input-group-prepend">
@@ -475,6 +475,8 @@
 				fid = json.fid;
 				$('#fid').val(json.fid);
 				$('#name').val(json.name);
+				$('#fid_qris').val(json.fid);
+				$('#name_qris').val(json.name);
 				checked(true);
 				enc = json.enc;
 			}else{
@@ -487,6 +489,10 @@
 				fid = json.tmp[1][0]['id'];
 				$('#fid').val(json.tmp[1][0]['id']);
 				$('#name').val(json.tmp[1][0]['name']);
+
+				$('#fid_qris').val(json.fid);
+				$('#name_qris').val(json.name);
+				
 				$('#tx_name').val(json.tmp[1][0]['name'])
 				$('#tx_number').val(json.tmp[1][0]['phone'])
 				$('#tx_city').val(json.tmp[1][0]['city'])
