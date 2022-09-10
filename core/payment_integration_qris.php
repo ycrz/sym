@@ -207,7 +207,7 @@
 		$payment_id = $response_JSON['data']['response']['payment_id'];
 		$account_number = $response_JSON['data']['response']['qr_code'];
         $_SESSION['tcpl_va'] = $account_number;
-        $payment = str_replace("'", "", durianSetPayment($order_id,$amount,$wallet,$fid));
+        $payment = str_replace("'", "", $payment);
 
 		$phA = sanity($number);
 		queryPost("INSERT INTO whatsapp.billing_payment (billing_order_id,payment_id,va_number,payload,media,user_number) VALUES ('$billing_order_id','$payment_id','$account_number','$payment','$wallet','$phA')");
