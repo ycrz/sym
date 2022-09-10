@@ -240,7 +240,7 @@
 				"customer": {
 					"customer_ref_id": "'.$fid.'",
 					"given_name": "'.$name.'",
-					"email": "singayehudamengaum@gmail.com",
+					"email": "p-'.$billing_order_id.'@sym.my.id",
 					"address": {
 						"receiver_name": "'.$name.'",
 						"label": "'.$fid.'"
