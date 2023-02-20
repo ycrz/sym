@@ -8,7 +8,7 @@
 ?>
 
 <?php 
-	$form = ['fm-x2'];
+	$form = ['fm-x1'];
 	for ($i=0; $i < count($form); $i++) { 
 		$res = queryBack("SELECT * FROM form_attendee WHERE fm='$form[$i]' order by name");
 ?>
@@ -21,8 +21,10 @@
 					<form class="tp-m-bt-10" action="core/whatsapp.php" method="POST">
 						<div class="form-group">
 							<input class="tp-dsp-none" name="fid" type="text" value="<?php echo $form[$i] ?>">
-							<label for="exampleInputEmail1">Kirim Pesan Whatsapp</label>
-							<textarea class="form-control" rows="3" required name="text"></textarea>
+							<label for="text">Kirim Pesan Whatsapp</label>
+							<textarea class="form-control" rows="3" name="text" id="text"></textarea>
+							<label for="file_url">Url File</label>
+							<input class="form-control" name="file_url" type="text" id="file_url">
 						</div>
 						<button type="submit"  onclick="fade()" class="btn btn-success tp-rnd-20"><i class="fa-brands fa-whatsapp"></i> Kirim Sekarang ke Whatsapp</button>
 					</form>

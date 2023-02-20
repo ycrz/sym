@@ -28,18 +28,24 @@
 		$text = preg_replace("/\n/m", '\n', $_POST['text']);
 		$text = implode('', explode("'", $text));
 
-		$res = queryBack("SELECT phone FROM form_attendee WHERE fm='$fid'");
+		$file_url = $_POST['file_url'];
+		$fix_url = "NULL";
+		if (trim($file_url) != '') {
+			$fix_url = "'$file_url'";
+		}
+
 
 		$res = queryBack("SELECT phonenumber FROM admin_contact WHERE status='1'");
 		for ($i=0; $i < $res[0]; $i++) { 
 			$phA = sanity($res[1][$i]['phonenumber']);
-			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$phA','*[ADMIN - Tembusan Pesan]*\n$text',5)");
+			queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id,file_link) VALUES ('$phA','*[ADMIN - Tembusan Pesan]*\n$text',5,$fix_url)");
 		}
 		
+		$res = queryBack("SELECT phone FROM form_attendee WHERE fm='$fid'");
 		if ($res[0] > 0) {
 			for ($i=0; $i < $res[0]; $i++) { 
 				$sanity = sanity($res[1][$i]['phone']);
-				queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id) VALUES ('$sanity','$text',5)");
+				queryPost("INSERT INTO whatsapp.sender_bulking (number_groupname,message,application_id,file_link) VALUES ('$sanity','$text',5,$fix_url)");
 			}
 		}
 
